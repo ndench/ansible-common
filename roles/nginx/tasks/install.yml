@@ -1,0 +1,30 @@
+---
+- name: install nginx
+  apt: 
+    pkg: nginx={{ nginx.version }}
+    state: present
+
+- name: ensure webroot exists
+  file:
+    path: "{{ nginx.webroot }}"
+    state: directory
+
+- name: create symfony nginx config
+  template: 
+    src: symfony{% if nginx.enable_ssl %}prod.conf{% else %}dev.conf{% endif %}
+    dest: /etc/nginx/sites-available/symfony.conf
+  notify: restart nginx
+
+- name: delete default nginx config
+  file: 
+    name: /etc/nginx/sites-enabled/default
+    state: absent
+  notify: restart nginx
+
+- name: create link symfony for nginx config
+  file: 
+    src: /etc/nginx/sites-available/symfony.conf
+    dest: /etc/nginx/sites-enabled/symfony.conf
+    state: link
+  notify: 
+    - restart nginx

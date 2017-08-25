@@ -1,0 +1,12 @@
+---
+- name: create deploy user
+  user:
+    name: deploy
+
+- name: set file permissions to deploy
+  file:
+    state: directory
+    path: /srv/www
+    group: deploy
+    mode: g=rwx
+    recurse: yes

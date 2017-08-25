@@ -1,0 +1,18 @@
+---
+- name: update apt
+  # keep the cache valid for 1 day
+  apt:
+    update_cache: yes
+    cache_valid_time: 86400
+
+- name: install common things
+  apt:
+    package: "{{ item }}"
+    state: present
+  with_items:
+    - vim
+    - tree
+    - htop
+    - zip
+    - unzip
+    - ntp

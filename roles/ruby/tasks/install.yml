@@ -1,0 +1,6 @@
+---
+- name: install ruby
+  apt:
+    package: ruby
+    state: present
+

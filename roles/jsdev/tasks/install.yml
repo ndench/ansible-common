@@ -1,0 +1,30 @@
+---
+- name: check if nodejs is installed
+  command: dpkg-query -W nodejs
+  ignore_errors: true
+  register: has_nodejs
+
+- name: download nodejs setup script
+  get_url:
+    url: https://deb.nodesource.com/setup_7.x
+    dest: /tmp/node_setup_7.x.sh
+    mode: 0544
+  when: has_nodejs|failed
+
+- name: run nodejs setup script
+  command: /tmp/node_setup_7.x.sh
+  when: has_nodejs|failed
+
+- name: install nodejs
+  apt:
+    pkg: nodejs
+    state: latest
+
+- name: install gulp globally
+  npm:
+    name: "{{ item }}"
+    state: present
+    global: yes
+  with_items:
+    - gulp
+    - jspm

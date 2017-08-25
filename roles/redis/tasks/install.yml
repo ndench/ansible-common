@@ -1,0 +1,6 @@
+---
+- name: install redis
+  apt:
+    pkg: redis-server={{ redis.version }}
+    state: present
+  notify: restart php-fpm

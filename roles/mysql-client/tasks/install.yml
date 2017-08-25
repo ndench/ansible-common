@@ -1,0 +1,5 @@
+---
+- name: install mysql-client
+  apt:
+    pkg: mysql-client={{ mysql.server_version }}
+    state: present

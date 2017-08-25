@@ -1,0 +1,33 @@
+---
+- name: add php 7.1 repository
+  apt_repository:
+    repo: ppa:ondrej/php
+    state: present
+
+- name: install php and modules
+  apt:
+    pkg: "{{ item  }}"
+    state: present
+  with_items:
+    - php7.1={{ php.php_version }}
+    - php7.1-fpm={{ php.php_version }}
+    - php7.1-mysql={{ php.php_version }}
+    - php7.1-curl={{ php.php_version }}
+    - php7.1-cli={{ php.php_version }}
+    - php7.1-xml={{ php.php_version }}
+    - php7.1-intl={{ php.php_version }}
+    - php7.1-zip={{ php.php_version }}
+    - php7.1-mbstring={{ php.php_version }}
+    - php7.1-gd={{ php.php_version }}
+    - acl={{ php.acl_version }}
+
+- name: create upload directory
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: www-data
+    group: www-data
+    mode: 0775
+    recurse: yes
+  with_items: "{{ php.upload_dirs }}"
+  when: php.upload_dirs is defined

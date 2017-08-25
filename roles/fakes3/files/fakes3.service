@@ -1,0 +1,13 @@
+[Unit]
+Description=Fake S3
+After=syslog.target network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/fakes3 -r /mnt/fakes3_root -p 4567
+StandardOutput=journal
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+

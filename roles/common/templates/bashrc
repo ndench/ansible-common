@@ -1,0 +1,21 @@
+# TODO split out symfony and project specific stuff some how
+export XDEBUG_CONFIG="idekey=PHPSTORM"
+export PHP_IDE_CONFIG="serverName=localhost"
+
+alias ccd="php {{ common.console_dir }}/console cache:clear --env=dev"
+alias ccp="php {{ common.console_dir }}/console cache:clear --env=prod"
+alias adump="php {{ common.console_dir }}/console assetic:dump"
+alias ainst="php {{ common.console_dir }}/console assets:install"
+alias asym="php {{ common.console_dir }}/console assets:install --symlink --relative"
+alias awatch="php {{ common.console_dir }}/console assetic:watch"
+alias xoff="sudo phpdismod xdebug; sudo service php7.1-fpm restart"
+alias xon="sudo phpenmod xdebug; sudo service php7.1-fpm restart" 
+
+alias con="php {{ common.console_dir }}/console"
+alias clearm="php {{ common.console_dir }}/console doctrine:cache:clear-m"
+alias docupd="php {{ common.console_dir }}/console doctrine:schema:update --dump-sql"
+alias docupf="php {{ common.console_dir }}/console doctrine:schema:update --force"
+
+alias cs="cd {{ common.src }}"
+alias cf="cd {{ common.src }}/src/FrontEndBundle/Resources/components/IssueRegister"
+alias ll="ls -l"

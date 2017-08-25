@@ -1,0 +1,14 @@
+---
+- name: copy s3cfg
+  copy:
+    src: local_s3_cfg
+    dest: "{{ ansible_env.HOME }}/.s3cfg"
+
+- name: check if fakes3 bucket exists
+  command: s3cmd ls s3://{{ fakes3.bucket }}
+  ignore_errors: true
+  register: check_bucket
+
+- name: create fakes3 bucket
+  command: s3cmd mb s3://{{ fakes3.bucket }}
+  when: check_bucket|failed

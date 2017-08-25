@@ -1,0 +1,29 @@
+---
+- name: add repository for certbot
+  apt_repository:
+    repo: ppa:certbot/certbot
+    state: present
+
+- name: install certbot
+  apt:
+    pkg: certbot
+    state: present
+
+- name: generate certs
+  command: certbot certonly --webroot -w {{ nginx.webroot  }} --non-interactive --agree-to --email {{ certbot.email }} --domains {{ certbot.domains }}
+  args:
+    creates: /etc/letsencrypt/live/{{ nginx.server_name }}/fullchain.pem
+
+- name: create diffie-hellman group
+  command: openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
+  args:
+    creates: /etc/ssl/certs/dhparam.pem
+
+- name: add cronjob for cerbot renewal
+  cron:
+    name: renew cerbot certificate at midnight every sunday
+    job: certbot renew --non-interactive --post-hook "systemctl reload nginx" >> /var/log/certbot-renew.log
+    state: present
+    weekday: 0
+    hour: 0
+    minute: 0

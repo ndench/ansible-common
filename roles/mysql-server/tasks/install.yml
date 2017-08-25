@@ -1,0 +1,49 @@
+---
+- name: install mysql
+  apt:
+    pkg: "{{ item }}"
+    state: present
+  with_items:
+    - mysql-server={{ mysql.server_version }}
+    - python3-mysqldb={{ mysql.python_mysql_version }}
+
+- name: update root password for all root accounts
+  mysql_user:
+    name: root
+    host: "{{ item }}"
+    check_implicit_admin: yes
+    password: "{{ mysql.root_password }}"
+    login_user: root
+    login_password: "{{ mysql.root_password }}"
+  with_items:
+    - "{{ ansible_hostname }}"
+    - 127.0.0.1
+    - ::1
+    - localhost
+
+- name: ensure anonymous users are not in the database
+  mysql_user:
+    name: ''
+    host: "{{ item }}"
+    state: absent
+    login_user: root
+    login_password: "{{ mysql.root_password }}"
+  with_items:
+    - localhost
+    - "{{ ansible_hostname }}"
+
+- name: create databases
+  mysql_db:
+    name: "{{ mysql.database }}"
+    state: present
+    login_user: root
+    login_password: "{{ mysql.root_password }}"
+
+- name: create users
+  mysql_user:
+    name: "{{ mysql.user }}"
+    password: "{{ mysql.password }}"
+    priv: "{{ mysql.database }}.*:ALL"
+    state: present
+    login_user: root
+    login_password: "{{ mysql.root_password }}"

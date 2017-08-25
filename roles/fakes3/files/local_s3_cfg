@@ -1,0 +1,5 @@
+[default]
+access_key = abc
+host_base = localhost:4567
+host_bucket = %(bucket)s.localhost:4567
+use_https = False
