@@ -122,7 +122,7 @@ My Vagrantfile contains a section like this:
 ```
 
 Which tells vagrant where to find the `playbook.yml` file, which
-group it should be in (see [playbook.yml](#playbook.yml) further down),
+group it should be in (see [playbook.yml](#playbookyml) further down),
 and to run ansible with `-v` because it gives better output.
 
 ### Group vars
