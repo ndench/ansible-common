@@ -1,3 +1,3 @@
 # Mailhog Role
 
-Documentation for the [mailhog role](/roles/mailhog)
+Documentation for the [mailhog role](/roles/mailhog).

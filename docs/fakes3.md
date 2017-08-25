@@ -1,3 +1,3 @@
 # FakeS3 Role
 
-Documentation for the [fakes3 role](/roles/fakes3)
+Documentation for the [fakes3 role](/roles/fakes3).

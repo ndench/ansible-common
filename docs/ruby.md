@@ -1,3 +1,3 @@
 # Ruby Role
 
-Documentation for the [ruby role](/roles/ruby)
+Documentation for the [ruby role](/roles/ruby).

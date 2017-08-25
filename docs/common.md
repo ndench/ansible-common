@@ -1,3 +1,3 @@
 # Common Role
 
-Documentation for the [common role](/roles/common)
+Documentation for the [common role](/roles/common).

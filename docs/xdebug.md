@@ -1,3 +1,3 @@
 # Xdebug Role
 
-Documentation for the [xdebuglg role](/roles/certbot)
+Documentation for the [xdebug role](/roles/xdebug).
