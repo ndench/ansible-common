@@ -3,6 +3,11 @@
 Ansible roles that can be used by many projects.
 
 
+## Documentation
+
+You can find documention for each role in the [docs folder](docs).
+
+
 ## Configuring ansible
 
 In the root of your project, create an `ansible.cfg` file:
