@@ -10,6 +10,7 @@ auto deployment.
 
 `deploy_key`: A ssh private key file, which should have access to 
               you GitHub repo, so that it can do deploys.
+
 `authorized_keys`: A list of ssh public keys to put against the 
                    `deploy` user to allow others to ssh in.
 

@@ -8,6 +8,7 @@ This role will install certbot and acquire ssl certificatets from
 ## Varibles
 
 `email`: an email address that will be registered against the ssl certs.
+
 `domains`: a comma separated list of domains to get ssl certs for.
 
 Example:

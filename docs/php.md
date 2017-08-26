@@ -9,7 +9,9 @@ directories for uploaded files.
 ## Variables:
 
 `php_version`: The version of `php` to install (will only work with 7.1.*)
+
 `acl_version`: The version of `acl` to install.
+
 `upload_dirs`: A list of directories to create with `www-data` write
                permissions.
 

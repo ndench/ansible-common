@@ -2,7 +2,7 @@
 
 Documentation for the [fakes3 role](/roles/fakes3).
 
-This role will install, setup a service and create a bucket bucket
+This role will install, setup a service and create a bucket for 
 [FakeS3](https://github.com/jubos/fake-s3), to allow development
 againt the AWS S3 API.
 
@@ -21,4 +21,4 @@ fakes3:
 ## Dependencies
 
 FakeS3 depends on the [ruby role](/docs/ruby.md) role, which it will
-automatically pull in because of it's [metadata](meta/main.yml).
+automatically pull in because of it's [metadata](roles/fakes3/meta/main.yml).
