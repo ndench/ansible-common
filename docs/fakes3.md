@@ -20,5 +20,5 @@ fakes3:
 
 ## Dependencies
 
-FakeS3 depends on the [ruby role](/docs/ruby.md) role, which it will
-automatically pull in because of it's [metadata](roles/fakes3/meta/main.yml).
+FakeS3 depends on the [ruby role](ruby.md) role, which it will
+automatically pull in because of it's [metadata](/roles/fakes3/meta/main.yml).
