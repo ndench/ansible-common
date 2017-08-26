@@ -22,5 +22,5 @@ certbot:
 
 ## Dependencies
 
-Certbot depends on the [nginx role](/docs/nginx.md), which it will
+Certbot depends on the [nginx role](nginx.md), which it will
 automatically pull in because of it's [metadata](/roles/certbot/meta/main.yml).
