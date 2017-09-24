@@ -10,6 +10,7 @@
     content: "{{ deploy.deploy_key }}"
     dest: /home/deploy/.ssh/id_rsa
     mode: 0600
+  when: deploy.deploy_key is defined
 
 - name: enable ssh
   authorized_key:
