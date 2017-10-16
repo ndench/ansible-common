@@ -13,6 +13,13 @@
   template: 
     src: symfony{% if nginx.enable_ssl %}prod.conf{% else %}dev.conf{% endif %}
     dest: /etc/nginx/sites-available/symfony.conf
+    # Need to copy the entire nginx conf dir to temp location to validate it
+    # validation occurs on base nginx.conf not the site conf we're adding
+    validate: >
+      bash -c 'NGINX_CONF_DIR=`mktemp -d`;
+      cp -rTp /etc/nginx/ "$NGINX_CONF_DIR"
+      && cp -Tp %s "$NGINX_CONF_DIR"/sites-enabled/new-site.conf
+      && nginx -t -c "$NGINX_CONF_DIR"/nginx.conf'
   notify: restart nginx
 
 - name: delete default nginx config
