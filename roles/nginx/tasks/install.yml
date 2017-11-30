@@ -9,6 +9,11 @@
     path: "{{ nginx.webroot }}"
     state: directory
 
+- name: copy included nginx conf
+  copy:
+    src: symfony-fpm.conf
+    dest: /etc/nginx/symfony-fpm.conf
+
 - name: create symfony nginx config
   template: 
     src: symfony{% if nginx.enable_ssl %}prod.conf{% else %}dev.conf{% endif %}
