@@ -28,3 +28,4 @@
   with_items:
     - gulp
     - jspm
+    - aurelia-cli

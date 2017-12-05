@@ -30,6 +30,8 @@
     login_password: "{{ mysql.root_password }}"
   with_items:
     - localhost
+    - 127.0.0.1
+    - ::1
     - "{{ ansible_hostname }}"
 
 - name: create databases
@@ -43,7 +45,13 @@
   mysql_user:
     name: "{{ mysql.user }}"
     password: "{{ mysql.password }}"
+    host: "{{ item }}"
     priv: "{{ mysql.database }}.*:ALL"
     state: present
     login_user: root
     login_password: "{{ mysql.root_password }}"
+  with_items:
+    - localhost
+    - 127.0.0.1
+    - ::1
+    - "{{ ansible_hostname }}"
