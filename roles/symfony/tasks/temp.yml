@@ -1,0 +1,35 @@
+# Sets up cache directories
+---
+#
+- name: create temp directories
+  file:
+    path: '/var/{{ item }}/symfony'
+    state: directory
+    mode: 0755
+  with_items:
+    - cache
+    - logs
+    - spool
+- name: setfacl for temp directories (as a file)
+  acl:
+    path: '/var/{{ item[0] }}/symfony'
+    entity: '{{ item[1] }}'
+    etype: user
+    recursive: yes
+    state: present
+    permissions: rwx
+  with_nested:
+    - [ 'cache', 'logs', 'spool' ]
+    - [ 'www-data', 'ubuntu' ]
+- name: setfacl for temp directories (as a directory)
+  acl:
+    default: yes
+    path: '/var/{{ item[0] }}/symfony'
+    entity: '{{ item[1] }}'
+    etype: user
+    recursive: yes
+    state: present
+    permissions: rwx
+  with_nested:
+    - [ 'cache', 'logs', 'spool' ]
+    - [ 'www-data', 'ubuntu' ]
