@@ -16,6 +16,6 @@ alias clearm="php {{ common.console_dir }}/console doctrine:cache:clear-m"
 alias docupd="php {{ common.console_dir }}/console doctrine:schema:update --dump-sql"
 alias docupf="php {{ common.console_dir }}/console doctrine:schema:update --force"
 
-alias cs="cd {{ common.src }}"
-alias cf="cd {{ common.src }}/src/FrontEndBundle/Resources/components/IssueRegister"
+alias cs="cd {{ common.server }}"
+alias cc="cd {{ common.client }}"
 alias ll="ls -l"
